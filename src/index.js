@@ -115,8 +115,14 @@ if (apiFolders)
       `./src/api/${apiFolder}/content-types/${apiFolder}/schema.json`,
       interfaceName
     );
-    if (interface)
+    if (interface) {
       fs.writeFileSync(`${typesDir}/${interfaceName}.ts`, interface);
+      fs.writeFileSync(
+        `${typesDir}/index.ts`,
+        `export * from './${interfaceName}';\n`,
+        { flag: 'a' }
+      );
+    }
   }
 
 // --------------------------------------------
@@ -145,8 +151,14 @@ if (componentCategoryFolders) {
         `./src/components/${componentCategoryFolder}/${componentSchema}`,
         interfaceName
       );
-      if (interface)
+      if (interface) {
         fs.writeFileSync(`${targetFolder}/${interfaceName}.ts`, interface);
+        fs.writeFileSync(
+          `${typesDir}/index.ts`,
+          `export * from './components/${interfaceName}';\n`,
+          { flag: 'a' }
+        );
+      }
     }
   }
 }

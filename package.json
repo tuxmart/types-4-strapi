@@ -1,5 +1,5 @@
 {
-  "name": "types-4-strapi",
+  "name": "@tuxmart/types-4-strapi",
   "version": "1.0.22",
   "description": "Typescript interface generator for Strapi 4 models",
   "main": "./src/index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/francescolorenzetti/types-4-strapi.git"
+    "url": "git+https://github.com/tuxmart/types-4-strapi.git"
   },
   "keywords": [
     "strapi",
@@ -19,7 +19,7 @@
   "author": "Francesco Lorenzetti",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/francescolorenzetti/types-4-strapi/issues"
+    "url": "https://github.com/tuxmart/types-4-strapi/issues"
   },
-  "homepage": "https://github.com/francescolorenzetti/types-4-strapi#readme"
+  "homepage": "https://github.com/tuxmart/types-4-strapi#readme"
 }

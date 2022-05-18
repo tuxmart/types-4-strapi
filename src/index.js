@@ -10,6 +10,16 @@ const typesDir = 'types';
 if (!fs.existsSync(typesDir)) fs.mkdirSync(typesDir);
 
 // --------------------------------------------
+// FlattenAttributes
+// --------------------------------------------
+
+const attributesOfInterface = `export type AttributesOf<T extends { attributes: unknown; id: number }> =
+  T['attributes'] & { id: T['id'] };
+`;
+fs.writeFileSync(`${typesDir}/AttributesOf.ts`, attributesOfInterface);
+
+
+// --------------------------------------------
 // Payload
 // --------------------------------------------
 
@@ -32,7 +42,8 @@ fs.writeFileSync(`${typesDir}/Payload.ts`, payloadTsInterface);
 // User
 // --------------------------------------------
 
-const userTsInterface = `export interface User {
+const userTsInterface = `import { AttributesOf } from './AttributesOf';
+export type User = AttributesOf<{
   id: number;
   attributes: {
     username: string;
@@ -43,7 +54,7 @@ const userTsInterface = `export interface User {
     createdAt: Date;
     updatedAt: Date;
   }
-}
+}>
 `;
 
 fs.writeFileSync(`${typesDir}/User.ts`, userTsInterface);
@@ -72,8 +83,9 @@ fs.writeFileSync(`${typesDir}/MediaFormat.ts`, mediaFormatTsInterface);
 // --------------------------------------------
 
 var mediaTsInterface = `import { MediaFormat } from './MediaFormat';
+import { AttributesOf } from './AttributesOf';
 
-export interface Media {
+export type Media = AttributesOf<{
   id: number;
   attributes: {
     name: string;
@@ -92,7 +104,7 @@ export interface Media {
     createdAt: Date;
     updatedAt: Date;
   }
-}
+}>
 `;
 
 fs.writeFileSync(`${typesDir}/Media.ts`, mediaTsInterface);

@@ -4,7 +4,7 @@ const { pascalCase, isOptional } = require('./utils');
 module.exports = (schemaPath, interfaceName) => {
   var tsImports = [];
   var tsInterface = `\n`;
-  tsInterface += `export interface ${interfaceName} {\n`;
+  tsInterface += `export type ${interfaceName} = AttributesOf<{\n`;
   tsInterface += `  id: number;\n`;
   tsInterface += `  attributes: {\n`;
   var schemaFile;
@@ -161,10 +161,12 @@ module.exports = (schemaPath, interfaceName) => {
     tsInterface += `    localizations?: { data: ${interfaceName}[] }\n`;
   }
   tsInterface += `  }\n`;
-  tsInterface += '}\n';
+  tsInterface += '}>\n';
   for (const tsImport of tsImports) {
     tsInterface =
       `import { ${tsImport.type} } from '${tsImport.path}';\n` + tsInterface;
   }
+  tsInterface =
+    `import { AttributesOf } from './AttributesOf';\n` + tsInterface;
   return tsInterface;
 };
